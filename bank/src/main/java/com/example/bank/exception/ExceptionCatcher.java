@@ -12,4 +12,9 @@ public class ExceptionCatcher {
     public ResponseEntity<ExceptionResponse> handleWalletNotFoundException(WalletNotFoundException e) {
         return new ResponseEntity<>(new ExceptionResponse(e.getMessage(), HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(WalletAlreadyExistsException.class)
+    public ResponseEntity<ExceptionResponse> handleWalletAlreadyExistsException(WalletNotFoundException e) {
+        return new ResponseEntity<>(new ExceptionResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+    }
 }
