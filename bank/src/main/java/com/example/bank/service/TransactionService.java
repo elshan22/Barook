@@ -30,6 +30,6 @@ public class TransactionService {
             transactionRepository.save(transaction);
             return transaction.getId();
         }
-        throw new WalletNotFoundException("wallet for user with id: " + userId + " doesn't exist!");
+        throw new WalletNotFoundException("wallet for user with id " + userId + " doesn't exist!");
     }
 }

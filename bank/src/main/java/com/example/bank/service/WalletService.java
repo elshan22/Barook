@@ -19,6 +19,6 @@ public class WalletService {
     public BigDecimal getBalance(Long userId) {
         Optional<Wallet> wallet = walletRepository.findByUserId(userId);
         if (wallet.isPresent()) return wallet.get().getBalance();
-        throw new WalletNotFoundException("wallet for user with id: " + userId + " doesn't exist!");
+        throw new WalletNotFoundException("wallet for user with id " + userId + " doesn't exist!");
     }
 }

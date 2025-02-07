@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ExceptionCatcher {
 
     @ExceptionHandler(WalletNotFoundException.class)
-    public ResponseEntity<String> handleWalletNotFoundException(WalletNotFoundException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<ExceptionResponse> handleWalletNotFoundException(WalletNotFoundException e) {
+        return new ResponseEntity<>(new ExceptionResponse(e.getMessage(), HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
     }
 }
