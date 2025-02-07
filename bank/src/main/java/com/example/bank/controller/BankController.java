@@ -1,6 +1,7 @@
 package com.example.bank.controller;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,8 @@ public class BankController {
     private MockService mockService;
 
     @PostMapping("/wallets")
-    public MockDTO addWallet(@RequestParam Long userId) {
+    public MockDTO addWallet(@RequestBody Map<String, Object> request) {
+        Long userId = Long.valueOf(request.get("user_id").toString());
         Long walletId = mockService.addWallet(userId);
         return new MockDTO(walletId);
     }
@@ -38,7 +40,8 @@ public class BankController {
     }
 
     @PostMapping("/add/{userId}")
-    public TransactionDTO addAmount(@PathVariable Long userId, @RequestParam double amount) {
+    public TransactionDTO addAmount(@PathVariable Long userId, @RequestBody Map<String, Object> request) {
+        Double amount = Double.valueOf(request.get("amount").toString());
         BigDecimal bigAmount = BigDecimal.valueOf(amount);
         Long reference_id = transactionService.addMoney(userId, bigAmount);
         return new TransactionDTO(reference_id);
