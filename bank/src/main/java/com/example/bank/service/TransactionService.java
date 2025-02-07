@@ -25,7 +25,7 @@ public class TransactionService {
     public Long addAmount(Long userId, BigDecimal amount) {
         Optional<Wallet> wallet = walletRepository.findByUserId(userId);
         if (wallet.isPresent()) {
-            if (wallet.get().getBalance().compareTo(amount) == -1)
+            if (wallet.get().getBalance().compareTo(amount.negate()) == -1)
                 throw new InsufficientBalanceException("user with id " + userId + " cannot withdraw " + amount + " amounts of money!");
             wallet.get().setBalance(wallet.get().getBalance().add(amount));
             walletRepository.save(wallet.get());

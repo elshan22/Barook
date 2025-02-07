@@ -23,12 +23,4 @@ public class MockService {
         walletRepository.save(newWallet);
         return newWallet.getId();
     }
-
-    public Long addWallet(Long userId, BigDecimal amount) {
-        Optional<Wallet> wallet = walletRepository.findByUserId(userId);
-        if (wallet.isPresent()) throw new WalletAlreadyExistsException("wallet for user with id " + userId + " already exists!");
-        Wallet newWallet = new Wallet(userId, amount);
-        walletRepository.save(newWallet);
-        return newWallet.getId();
-    }
 }
