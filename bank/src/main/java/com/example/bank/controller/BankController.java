@@ -25,7 +25,7 @@ public class BankController {
     @Autowired
     private MockService mockService;
 
-    @PostMapping("")
+    @PostMapping("/wallets")
     public MockDTO addWallet(@RequestParam Long userId) {
         Long walletId = mockService.addWallet(userId);
         return new MockDTO(walletId);
