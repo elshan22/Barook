@@ -27,16 +27,16 @@ public class MockTest {
 
     @Test
     public void testCreateWallet_Success() {
-        Long walletId = mockService.addWallet(1L);
+        Long walletId = mockService.addWallet(1000L);
         assertNotNull(walletId);
         Optional<Wallet> wallet = walletRepository.findById(walletId);
         assertTrue(wallet.isPresent());
-        assertEquals(wallet.get().getUserId(), 1L);
+        assertEquals(wallet.get().getUserId(), 1000L);
     }
 
     @Test
     public void testCreateWallet_AlreadyExists_ThrowsException() {
-        mockService.addWallet(1L);
-        assertThrows(WalletAlreadyExistsException.class, () -> mockService.addWallet(1L));
+        mockService.addWallet(1000L);
+        assertThrows(WalletAlreadyExistsException.class, () -> mockService.addWallet(1000L));
     }
 }

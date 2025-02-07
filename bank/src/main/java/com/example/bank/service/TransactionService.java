@@ -1,9 +1,12 @@
 package com.example.bank.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.example.bank.exception.InsufficientBalanceException;
@@ -34,5 +37,13 @@ public class TransactionService {
             return transaction.getId();
         }
         throw new WalletNotFoundException("wallet for user with id " + userId + " doesn't exist!");
+    }
+
+    @Scheduled(fixedRate = 120000)
+    public void printRecentTransactionSum() {
+        LocalDateTime last = LocalDateTime.now().minus(2, ChronoUnit.MINUTES);
+        BigDecimal totalAmount = transactionRepository.sumAmountSince(last);
+        
+        System.out.println("Total transactions in the last 2 minutes: " + totalAmount);
     }
 }

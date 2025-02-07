@@ -32,16 +32,16 @@ public class TransactionTest {
 
     @Test
     public void testAddMoney_Success() {
-        mockService.addWallet(1L);
-        transactionService.addMoney(1L, new BigDecimal(100));
-        Optional<Wallet> updatedWallet = walletRepository.findByUserId(1L);
+        mockService.addWallet(1000L);
+        transactionService.addMoney(1000L, new BigDecimal(100));
+        Optional<Wallet> updatedWallet = walletRepository.findByUserId(1000L);
         assertTrue(updatedWallet.isPresent());
         assertEquals(new BigDecimal(100), updatedWallet.get().getBalance());
     }
 
     @Test
     public void testAddMoney_NegativeAmount_ThrowsException() {
-        mockService.addWallet(1L);
-        assertThrows(InsufficientBalanceException.class, () -> transactionService.addMoney(1L, new BigDecimal(-500)));
+        mockService.addWallet(1000L);
+        assertThrows(InsufficientBalanceException.class, () -> transactionService.addMoney(1000L, new BigDecimal(-500)));
     }
 }

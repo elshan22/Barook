@@ -30,14 +30,14 @@ public class WalletTest {
 
     @Test
     public void testGetBalance_Success() {
-        mockService.addWallet(1L);
-        transactionService.addMoney(1L, new BigDecimal(150));
-        BigDecimal balance = walletService.getBalance(1L);
+        mockService.addWallet(1000L);
+        transactionService.addMoney(1000L, new BigDecimal(150));
+        BigDecimal balance = walletService.getBalance(1000L);
         assertEquals(new BigDecimal(150), balance);
     }
 
     @Test
     public void testGetBalance_WalletNotFound_ThrowsException() {
-        assertThrows(WalletNotFoundException.class, () -> walletService.getBalance(1L));
+        assertThrows(WalletNotFoundException.class, () -> walletService.getBalance(1000L));
     }
 }
