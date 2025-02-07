@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.bank.exception.WalletNotFoundException;
 import com.example.bank.model.Transaction;
 import com.example.bank.model.Wallet;
 import com.example.bank.repository.TransactionRepository;
@@ -29,6 +30,6 @@ public class TransactionService {
             transactionRepository.save(transaction);
             return transaction.getId();
         }
-        return null;
+        throw new WalletNotFoundException("wallet for user with id: " + userId + " doesn't exist!");
     }
 }
