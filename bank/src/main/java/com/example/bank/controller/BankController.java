@@ -40,7 +40,7 @@ public class BankController {
     @PostMapping("/add/{userId}")
     public TransactionDTO addAmount(@PathVariable Long userId, @RequestParam double amount) {
         BigDecimal bigAmount = BigDecimal.valueOf(amount);
-        Long reference_id = transactionService.addAmount(userId, bigAmount);
+        Long reference_id = transactionService.addMoney(userId, bigAmount);
         return new TransactionDTO(reference_id);
     }
 }

@@ -22,7 +22,7 @@ public class TransactionService {
     @Autowired
     private TransactionRepository transactionRepository;
 
-    public Long addAmount(Long userId, BigDecimal amount) {
+    public Long addMoney(Long userId, BigDecimal amount) {
         Optional<Wallet> wallet = walletRepository.findByUserId(userId);
         if (wallet.isPresent()) {
             if (wallet.get().getBalance().compareTo(amount.negate()) == -1)

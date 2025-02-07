@@ -9,9 +9,9 @@ import lombok.Setter;
 @Setter
 public class MockDTO {
     
-    private Long wallet_id;
+    private Long walletId;
 
-    public MockDTO(Long wallet_id) {
-        this.wallet_id = wallet_id;
+    public MockDTO(Long walletId) {
+        this.walletId = walletId;
     }
 }
