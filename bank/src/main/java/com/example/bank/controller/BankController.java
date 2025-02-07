@@ -5,8 +5,10 @@ import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.bank.dto.MockDTO;
 import com.example.bank.dto.TransactionDTO;
 import com.example.bank.dto.WalletDTO;
+import com.example.bank.service.MockService;
 import com.example.bank.service.TransactionService;
 import com.example.bank.service.WalletService;
 
@@ -19,6 +21,15 @@ public class BankController {
 
     @Autowired
     private WalletService walletService;
+
+    @Autowired
+    private MockService mockService;
+
+    @PostMapping("")
+    public MockDTO addWallet(@RequestParam Long userId) {
+        Long walletId = mockService.addWallet(userId);
+        return new MockDTO(walletId);
+    }
 
     @GetMapping("/balance/{userId}")
     public WalletDTO getBalance(@PathVariable Long userId) {
